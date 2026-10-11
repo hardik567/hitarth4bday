@@ -79,7 +79,10 @@
     text-shadow: 0 4px 0 var(--hero-red);
     text-wrap: balance;
   }
-  .cover .sub { margin: 0; font-weight: 700; font-size: 1.1rem; color: #cfe0ff; text-wrap: balance; }
+  .cover .sub { font-family: var(--font-display); margin: 0; font-size: clamp(1.5rem, 7.5vw, 2rem); color: var(--racing-yellow); text-shadow: 0 3px 0 rgba(0,0,0,.35); }
+  .wave .wd { display: inline-block; white-space: nowrap; }
+  .wave .ch { display: inline-block; animation: wave 1.3s ease-in-out infinite; animation-delay: calc(var(--i) * .08s); }
+  @keyframes wave { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 
   .tap {
     font-family: var(--font-display);
@@ -101,8 +104,8 @@
   /* hero and cars moving across the cover */
   .cv { position: absolute !important; display: block; height: auto; pointer-events: none; }
   .cover-hero { width: 112px; top: 6%; left: 0; animation: fly 9s linear infinite, bob 1.4s ease-in-out infinite alternate; animation-delay: -3s, 0s; }
-  .cover-car-a { width: 84px; bottom: 40px; left: 0; animation: drive-a 6.5s linear infinite; animation-delay: -2s; }
-  .cover-car-b { width: 68px; bottom: 34px; left: 0; animation: drive-b 9s linear infinite; animation-delay: -6s; }
+  .cover-car-a { width: 116px; bottom: 38px; left: 0; animation: drive-a 6.5s linear infinite; animation-delay: -2s; }
+  .cover-car-b { width: 92px; bottom: 32px; left: 0; animation: drive-b 9s linear infinite; animation-delay: -6s; }
 
   .skyline { position: absolute !important; left: 0; right: 0; bottom: 36px; width: 100%; height: 90px; display: block; }
   .checker {
@@ -137,12 +140,6 @@
     background: linear-gradient(180deg, #2f7bff 0%, #7cc4ff 55%, #d9f1ff 100%);
     box-shadow: 0 10px 28px rgba(0,0,0,.4);
   }
-  .scene .tag {
-    position: absolute; left: 12px; top: 12px; z-index: 3; margin: 0;
-    background: var(--hero-red); color: var(--white);
-    font-family: var(--font-display); font-size: .75rem; letter-spacing: .12em;
-    padding: 5px 12px; border-radius: 999px;
-  }
   .sun { position: absolute; right: 7%; top: 16px; width: 44px; height: 44px; border-radius: 50%; background: #ffd84a; box-shadow: 0 0 0 8px rgba(255,216,74,.35), 0 0 30px 12px rgba(255,216,74,.45); }
   .cloud { position: absolute; left: 0; width: 64px; height: 16px; border-radius: 16px; background: #fff; opacity: .92; animation: drift 28s linear infinite; }
   .cloud::before { content: ""; position: absolute; left: 12px; top: -9px; width: 28px; height: 22px; border-radius: 50%; background: #fff; }
@@ -158,29 +155,16 @@
       linear-gradient(#fff, #fff) 0 89px / 100% 3px no-repeat,
       repeating-linear-gradient(90deg, #2e9b4a 0 52px, #37ac55 52px 104px);
   }
-  .scene .goal { position: absolute; right: 8px; bottom: 90px; width: 58px; height: 66px; display: block; }
-  .finish { position: absolute; left: 80%; bottom: 0; width: 12px; height: 88px; background: conic-gradient(#fff 25%, #1b1f2e 0 50%, #fff 0 75%, #1b1f2e 0) 0 0 / 12px 12px; opacity: .95; }
+  .scene .goal { position: absolute; right: 8px; bottom: 4px; width: 58px; height: 66px; display: block; }
   @keyframes drive-a { from { left: -34%; } to { left: 112%; } }
   @keyframes drive-b { from { left: -30%; } to { left: 112%; } }
   @keyframes fly { from { left: -42%; } to { left: 112%; } }
   @keyframes bob { from { transform: translateY(-6px) rotate(-3deg); } to { transform: translateY(8px) rotate(2deg); } }
 
-  .kid { position: absolute; left: 0; width: 46px; height: auto; display: block; overflow: visible; }
-  .kid .leg, .kid .arm { transform-box: fill-box; }
-  .kid .leg { transform-origin: 50% 8%; }
-  .kid .arm { transform-origin: 50% 10%; }
-  .race { animation: run 6.5s linear infinite; }
-  .race .leg { animation: stride .5s ease-in-out infinite alternate; }
-  .race .leg.b { animation-direction: alternate-reverse; }
-  .race .arm { animation: stride .5s ease-in-out infinite alternate-reverse; }
-  .race .body { animation: hop .25s ease-in-out infinite alternate; }
-  .r1 { bottom: 44px; animation-duration: 6.5s; animation-delay: -2s; }
-  .r2 { bottom: 4px; animation-duration: 7.6s; animation-delay: -5s; }
-  @keyframes run { from { left: -16%; } to { left: 108%; } }
-  @keyframes stride { from { transform: rotate(-42deg); } to { transform: rotate(42deg); } }
-  @keyframes hop { to { transform: translateY(-3px); } }
-
-  .kicker { left: 7%; bottom: 90px; }
+  /* football (lower band) */
+  .kid { position: absolute; width: 46px; height: auto; display: block; overflow: visible; }
+  .kid .leg { transform-box: fill-box; transform-origin: 50% 8%; }
+  .kicker { left: 7%; bottom: 6px; }
   .kicker .leg.b { transform: rotate(-12deg); }
   .kicker .leg.k { animation: kickleg 3s ease-in-out infinite; }
   @keyframes kickleg {
@@ -189,7 +173,7 @@
     16% { transform: rotate(72deg); }
     30%, 100% { transform: rotate(0deg); }
   }
-  .fball { position: absolute; bottom: 92px; left: 17%; width: 24px; animation: ball-x 3s linear infinite; }
+  .fball { position: absolute; bottom: 8px; left: 17%; width: 24px; animation: ball-x 3s linear infinite; }
   .fball .arc { animation: ball-y 3s infinite; }
   .fball svg { display: block; width: 24px; height: 24px; animation: spin .6s linear infinite; }
   @keyframes ball-x {
@@ -200,11 +184,35 @@
   }
   @keyframes ball-y {
     0%, 14% { transform: translateY(0); animation-timing-function: ease-out; }
-    37% { transform: translateY(-58px); animation-timing-function: ease-in; }
-    60% { transform: translateY(-14px); animation-timing-function: ease-in; }
+    37% { transform: translateY(-50px); animation-timing-function: ease-in; }
+    60% { transform: translateY(-12px); animation-timing-function: ease-in; }
     76%, 100% { transform: translateY(0); }
   }
   @keyframes spin { to { transform: rotate(360deg); } }
+  .wheel { transform-box: fill-box; transform-origin: center; animation: spin .45s linear infinite; }
+
+  /* archery (upper band) */
+  .archer { position: absolute; left: 5%; bottom: 90px; width: 64px; height: auto; display: block; overflow: visible; }
+  .archer .pulled { animation: str-pulled 3s step-end infinite; }
+  .archer .flat { animation: str-flat 3s step-end infinite; }
+  @keyframes str-pulled { 0% { opacity: 1; } 30% { opacity: 0; } 100% { opacity: 0; } }
+  @keyframes str-flat { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 1; } }
+  .arrow { position: absolute; bottom: 126px; left: 17%; width: 40px; height: 8px; display: block; animation: shoot 3s linear infinite; }
+  @keyframes shoot {
+    0%, 28% { left: 17%; opacity: 1; }
+    33% { left: 19%; opacity: 1; }
+    50% { left: 74%; opacity: 1; }
+    86% { left: 74%; opacity: 1; }
+    94%, 100% { left: 74%; opacity: 0; }
+  }
+  .target { position: absolute; left: 78%; bottom: 90px; width: 44px; height: 64px; display: block; overflow: visible; transform-origin: 50% 100%; animation: wobble 3s ease-out infinite; }
+  @keyframes wobble {
+    0%, 49% { transform: rotate(0deg); }
+    52% { transform: rotate(3deg); }
+    56% { transform: rotate(-2.5deg); }
+    60% { transform: rotate(1.5deg); }
+    64%, 100% { transform: rotate(0deg); }
+  }
 
   .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
   .tile { border-radius: 20px; padding: 14px 16px 16px; text-align: center; min-width: 0; }
@@ -263,16 +271,24 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="car" viewBox="0 0 200 90">
-      <path d="M8 66 Q8 50 28 48 L58 46 Q74 22 104 22 L132 22 Q154 25 166 46 L186 50 Q196 54 196 64 L196 70 L8 70 Z" fill="var(--car, #e8283a)"/>
-      <path d="M70 46 Q82 31 104 31 L118 31 L118 46 Z" fill="#bfe6ff"/>
-      <path d="M124 31 L133 31 Q146 33 155 46 L124 46 Z" fill="#bfe6ff"/>
-      <rect x="8" y="63" width="188" height="4" fill="#ffc400"/>
-      <circle cx="96" cy="55" r="9" fill="#fff"/>
-      <text x="96" y="60.5" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="14" fill="#0b1440">4</text>
-      <circle cx="188" cy="58" r="4.5" fill="#fff3a0"/>
-      <rect x="2" y="42" width="14" height="6" rx="2" fill="#151826"/>
-      <circle cx="50" cy="70" r="16" fill="#151826"/><circle cx="50" cy="70" r="7" fill="#ffc400"/>
-      <circle cx="152" cy="70" r="16" fill="#151826"/><circle cx="152" cy="70" r="7" fill="#ffc400"/>
+      <rect x="3" y="26" width="30" height="7" rx="3.5" fill="#ffc400"/>
+      <rect x="13" y="32" width="5" height="22" fill="#151826"/>
+      <rect x="2" y="23" width="5" height="16" rx="2" fill="#151826"/>
+      <path d="M10 73 V55 Q10 49 18 49 H92 Q106 49 118 53 L178 59 Q198 62 198 69 V73 Z" fill="var(--car, #e8283a)"/>
+      <path d="M10 66 H198 V70 H10 Z" fill="#ffc400"/>
+      <path d="M60 49 Q64 40 74 38 L74 49 Z" fill="var(--car, #e8283a)"/>
+      <ellipse cx="82" cy="49" rx="22" ry="8" fill="#151826"/>
+      <circle cx="82" cy="37" r="14" fill="#fff"/>
+      <path d="M68 34 Q82 16 96 34" fill="none" stroke="#1e88ff" stroke-width="5"/>
+      <rect x="84" y="31" width="15" height="10" rx="5" fill="#0b1440"/>
+      <rect x="87" y="33" width="9" height="3" rx="1.5" fill="#bfe6ff"/>
+      <circle cx="112" cy="58" r="8" fill="#fff"/>
+      <text x="112" y="63" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="13" fill="#0b1440">4</text>
+      <circle cx="190" cy="65" r="3.5" fill="#fff6b0"/>
+      <rect x="178" y="74" width="22" height="5" rx="2.5" fill="#ffc400"/>
+      <rect x="5" y="58" width="9" height="5" rx="2.5" fill="#9aa4b2"/>
+      <g class="wheel"><circle cx="46" cy="70" r="18" fill="#151826"/><circle cx="46" cy="70" r="9" fill="#ffc400"/><path d="M46 62 V78 M38 70 H54" stroke="#151826" stroke-width="2.5"/></g>
+      <g class="wheel"><circle cx="160" cy="72" r="15" fill="#151826"/><circle cx="160" cy="72" r="7.5" fill="#ffc400"/><path d="M160 65 V79 M153 72 H167" stroke="#151826" stroke-width="2.5"/></g>
     </symbol>
     <symbol id="hero" viewBox="0 0 160 100">
       <path d="M98 50 Q46 14 4 38 Q38 48 14 74 Q60 72 98 62 Z" fill="#e8283a"/>
@@ -303,9 +319,9 @@
     <text x="100" y="168" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="110" fill="#ffc400">4</text>
     <path d="M100 38 l5 11 12 1 -9 8 3 12 -11 -6 -11 6 3 -12 -9 -8 12 -1 z" fill="#ffc400" transform="translate(0,-2) scale(1)"/>
   </svg>
-  <h1>Hitarth</h1>
-  <p class="theme-pill">Superheroes &amp; Fast Cars</p>
-  <p class="sub">is turning 4!</p>
+  <h1 class="wave" data-wave>Hitarth</h1>
+  <p class="sub wave" data-wave>is Turning 4!</p>
+  <p class="theme-pill">Super Birthday Mode On</p>
   <button class="tap" id="tap" type="button">TAP TO OPEN</button>
   <svg class="skyline" viewBox="0 0 400 90" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 90 V58 H24 V36 H48 V62 H64 V24 H92 V50 H112 V70 H132 V40 H156 V16 H176 V54 H198 V66 H220 V32 H246 V56 H266 V28 H290 V60 H312 V44 H338 V68 H360 V38 H382 V52 H400 V90 Z" fill="#070d2e"/>
@@ -319,13 +335,11 @@
 <!-- PAGE 2: invitation -->
 <main class="page" id="page" inert>
   <header class="title rise">
-    <p class="small">JOIN THE SUPER RACERS</p>
+    <p class="small">YOU'RE INVITED</p>
     <h2><span>Hitarth's</span><br>4th Birthday</h2>
-    <p class="theme-pill">Superheroes &amp; Fast Cars</p>
   </header>
 
-  <div class="scene rise" aria-label="Animated sports day: a kid scores football goals while two kids race on the turf">
-    <p class="tag">SPORTS DAY</p>
+  <div class="scene rise" aria-label="Animated sports scene: a kid shoots an arrow at a target while another kid scores football goals">
     <div class="sun" aria-hidden="true"></div>
     <div class="cloud c1" aria-hidden="true"></div>
     <div class="cloud c2" aria-hidden="true"></div>
@@ -342,54 +356,49 @@
       <path d="M0 46 V26 Q14 6 30 24 Q48 2 68 24 Q86 8 106 26 Q126 0 148 24 Q168 10 188 26 Q208 4 230 24 Q250 8 270 26 Q292 2 314 24 Q334 10 354 26 Q374 6 400 24 V46 Z" fill="#1f7a3c"/>
     </svg>
     <div class="turf" aria-hidden="true"></div>
+    <svg class="target" viewBox="0 0 44 64" aria-hidden="true">
+      <path d="M22 30 L7 63 M22 30 L37 63" stroke="#8b5a2b" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="22" cy="24" r="22" fill="#fff" stroke="#0b1440" stroke-width="1.5"/>
+      <circle cx="22" cy="24" r="17" fill="#1e88ff"/><circle cx="22" cy="24" r="12" fill="#e8283a"/><circle cx="22" cy="24" r="6.5" fill="#ffc400"/>
+    </svg>
+    <svg class="archer" viewBox="0 0 80 80" aria-hidden="true">
+      <rect x="25" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="24" y="67" width="13" height="7" rx="3.5" fill="#fff"/>
+      <rect x="33" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="32" y="67" width="13" height="7" rx="3.5" fill="#fff"/>
+      <rect x="23" y="44" width="19" height="12" rx="4" fill="#0b1440"/>
+      <rect x="21" y="22" width="23" height="28" rx="9" fill="#ffc400"/>
+      <text x="32.5" y="41" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="12" fill="#0b1440">4</text>
+      <rect x="30" y="30" width="16" height="6" rx="3" fill="#ffc400"/><circle cx="46" cy="33" r="3.6" fill="#f2b07b"/>
+      <rect x="30" y="24" width="34" height="6" rx="3" fill="#ffc400"/><circle cx="64" cy="27" r="3.8" fill="#f2b07b"/>
+      <path d="M64 8 Q88 30 64 52" fill="none" stroke="#8b5a2b" stroke-width="3.5" stroke-linecap="round"/>
+      <line class="flat" x1="64" y1="8" x2="64" y2="52" stroke="#fff" stroke-width="1.3"/>
+      <polyline class="pulled" points="64,8 47,30 64,52" fill="none" stroke="#fff" stroke-width="1.3"/>
+      <circle cx="35" cy="12" r="11" fill="#f2b07b"/>
+      <path d="M24 11 Q25 0 36 1 Q46 2 46 12 Q39 6 24 11 Z" fill="#2a1a10"/>
+      <ellipse cx="41" cy="12" rx="1.8" ry="2.2" fill="#2a1a10"/>
+      <path d="M38 18 Q42 21 45 18" stroke="#7a3b22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </svg>
+    <svg class="arrow" viewBox="0 0 50 10" aria-hidden="true">
+      <line x1="6" y1="5" x2="46" y2="5" stroke="#8b5a2b" stroke-width="2" stroke-linecap="round"/>
+      <path d="M45 1.5 L50 5 L45 8.5 Z" fill="#9aa4b2"/>
+      <path d="M0 0.5 L9 5 L0 9.5 L3.5 5 Z" fill="#e8283a"/>
+    </svg>
     <svg class="goal" viewBox="0 0 58 66" aria-hidden="true">
       <g stroke="#fff" stroke-width="1" opacity=".6" fill="none"><path d="M14 6 V62" /><path d="M22 6 V62" /><path d="M30 6 V62" /><path d="M38 6 V62" /><path d="M46 6 V62" /><path d="M4 16 H52" /><path d="M4 26 H52" /><path d="M4 36 H52" /><path d="M4 46 H52" /><path d="M4 56 H52" /></g>
       <path d="M4 63 V5 H54 V63" fill="none" stroke="#fff" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
     </svg>
     <svg class="kid kicker" viewBox="0 0 60 80" style="--jersey:#e8283a;--shorts:#0b1440;--hair:#3b2416" aria-hidden="true">
-      <g class="body">
-        <g class="leg k"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <g class="leg b"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <rect x="23" y="44" width="15" height="12" rx="4" fill="var(--shorts)"/>
-        <rect x="21" y="24" width="23" height="26" rx="9" fill="var(--jersey)"/>
-        <text x="32.5" y="42" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="12" fill="#fff">9</text>
-        <g class="arm"><rect x="29" y="26" width="7" height="20" rx="3.5" fill="var(--jersey)"/><circle cx="32.5" cy="46" r="4" fill="#f2b07b"/></g>
-        <circle cx="35" cy="14" r="11" fill="#f2b07b"/>
-        <path d="M24 13 Q25 2 36 3 Q46 4 46 14 Q39 8 24 13 Z" fill="var(--hair)"/>
-        <ellipse cx="41" cy="14" rx="1.8" ry="2.2" fill="#2a1a10"/>
-        <path d="M38 20 Q42 23 45 20" stroke="#7a3b22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      </g>
+      <g class="leg k"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
+      <g class="leg b"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
+      <rect x="23" y="44" width="15" height="12" rx="4" fill="var(--shorts)"/>
+      <rect x="21" y="24" width="23" height="26" rx="9" fill="var(--jersey)"/>
+      <text x="32.5" y="42" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="12" fill="#fff">9</text>
+      <rect x="29" y="26" width="7" height="20" rx="3.5" fill="var(--jersey)"/><circle cx="32.5" cy="46" r="4" fill="#f2b07b"/>
+      <circle cx="35" cy="14" r="11" fill="#f2b07b"/>
+      <path d="M24 13 Q25 2 36 3 Q46 4 46 14 Q39 8 24 13 Z" fill="var(--hair)"/>
+      <ellipse cx="41" cy="14" rx="1.8" ry="2.2" fill="#2a1a10"/>
+      <path d="M38 20 Q42 23 45 20" stroke="#7a3b22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
     </svg>
     <div class="fball" aria-hidden="true"><div class="arc"><svg viewBox="0 0 30 30"><circle cx="15" cy="15" r="14" fill="#fff" stroke="#0b1440" stroke-width="1.5"/><path d="M15 8 l6 4.4 -2.3 7 h-7.4 l-2.3 -7 z" fill="#0b1440"/><path d="M15 8 V1.5 M21 12.4 l6.5 -2 M18.7 19.4 l4 5.6 M11.3 19.4 l-4 5.6 M9 12.4 l-6.5 -2" stroke="#0b1440" stroke-width="1.5" fill="none"/></svg></div></div>
-    <div class="finish" aria-hidden="true"></div>
-    <svg class="kid race r1" viewBox="0 0 60 80" style="--jersey:#1e88ff;--shorts:#ffffff;--hair:#2a1a10" aria-hidden="true">
-      <g class="body">
-        <g class="leg"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <g class="leg b"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <rect x="23" y="44" width="15" height="12" rx="4" fill="var(--shorts)"/>
-        <rect x="21" y="24" width="23" height="26" rx="9" fill="var(--jersey)"/>
-        <text x="32.5" y="42" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="12" fill="#fff">7</text>
-        <g class="arm"><rect x="29" y="26" width="7" height="20" rx="3.5" fill="var(--jersey)"/><circle cx="32.5" cy="46" r="4" fill="#f2b07b"/></g>
-        <circle cx="35" cy="14" r="11" fill="#f2b07b"/>
-        <path d="M24 13 Q25 2 36 3 Q46 4 46 14 Q39 8 24 13 Z" fill="var(--hair)"/>
-        <ellipse cx="41" cy="14" rx="1.8" ry="2.2" fill="#2a1a10"/>
-        <path d="M38 20 Q42 23 45 20" stroke="#7a3b22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      </g>
-    </svg>
-    <svg class="kid race r2" viewBox="0 0 60 80" style="--jersey:#ffc400;--shorts:#0b1440;--hair:#6b3a1f" aria-hidden="true">
-      <g class="body">
-        <g class="leg"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <g class="leg b"><rect x="26" y="52" width="8" height="19" rx="4" fill="#f2b07b"/><rect x="25" y="67" width="13" height="7" rx="3.5" fill="#fff"/></g>
-        <rect x="23" y="44" width="15" height="12" rx="4" fill="var(--shorts)"/>
-        <rect x="21" y="24" width="23" height="26" rx="9" fill="var(--jersey)"/>
-        <text x="32.5" y="42" text-anchor="middle" font-family="Bungee, Impact, sans-serif" font-size="12" fill="#0b1440">4</text>
-        <g class="arm"><rect x="29" y="26" width="7" height="20" rx="3.5" fill="var(--jersey)"/><circle cx="32.5" cy="46" r="4" fill="#f2b07b"/></g>
-        <circle cx="35" cy="14" r="11" fill="#f2b07b"/>
-        <path d="M24 13 Q25 2 36 3 Q46 4 46 14 Q39 8 24 13 Z" fill="var(--hair)"/>
-        <ellipse cx="41" cy="14" rx="1.8" ry="2.2" fill="#2a1a10"/>
-        <path d="M38 20 Q42 23 45 20" stroke="#7a3b22" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      </g>
-    </svg>
   </div>
 
   <section class="rise" aria-label="Party details" style="display:flex;flex-direction:column;gap:12px">
@@ -415,11 +424,10 @@
   <section class="plan rise" aria-label="What to expect">
     <p class="mission">GAMES · LAUGHS · SUPER FUN!</p>
     <ul class="agenda">
-      <li><b>Sports events</b><span>Races, relays and games for our little heroes</span></li>
+      <li><b>Dress comfy</b></li>
       <li><b>Followed by dinner</b><span>Stay on and eat together after the games</span></li>
       <li><b>Parents, come together</b><span>Kids. Parents. Everyone! Join the fun on the turf</span></li>
     </ul>
-    <p class="dress">Dress comfy</p>
   </section>
 
   <div class="home-wrap rise">
@@ -434,6 +442,27 @@
   var cover = document.getElementById('cover');
   var page = document.getElementById('page');
   var tap = document.getElementById('tap');
+
+  var n = 0;
+  document.querySelectorAll('[data-wave]').forEach(function (el) {
+    var text = el.textContent;
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    text.split(' ').forEach(function (word, wi) {
+      if (wi) el.appendChild(document.createTextNode(' '));
+      var w = document.createElement('span');
+      w.className = 'wd';
+      w.setAttribute('aria-hidden', 'true');
+      word.split('').forEach(function (c) {
+        var ch = document.createElement('span');
+        ch.className = 'ch';
+        ch.style.setProperty('--i', n++);
+        ch.textContent = c;
+        w.appendChild(ch);
+      });
+      el.appendChild(w);
+    });
+  });
 
   function openInvite() {
     document.body.classList.add('opened');
